@@ -22,6 +22,7 @@ $(function() {
 	  async: true,
 	  cache: false,
 	  success: function(res) {
+	  	// console.log(res);
 	  	buildPlayers(res);
 	  },
 	  dataType: "json"
@@ -139,16 +140,10 @@ $(function() {
 
 	
 		$('.instructions').addClass('js-active');
-		$('.scripts').addClass('js-active');
 		GAME.round = 1;
 		GAME.turn = GAME.roles[0].type;
 		GAME.state = "assign";
-
-		swal("Night time!", "Tell the group to go to sleep.", {
-		 	button: "Start Game",
-		}).then((value) => {
-			actionRound();
-		});
+		actionRound();
 
 	}
 
@@ -161,7 +156,7 @@ $(function() {
 				//ASSIGN PLAYERS OR SELECT TARGETS
 				if (GAME.state == "assign") {
 					showScript("<strong>READ:</strong> Would the "+GAME.turn+" please wake up?");
-					showInstruction("<strong>INSTRUCTION:</strong> Identify and select the <strong>["+getSetupRolesCount(GAME.turn)+" "+GAME.turn+"]</strong> to assign their roles");
+					showInstruction("<strong>INSTRUCTION:</strong> Identify and select the ["+getSetupRolesCount(GAME.turn)+" "+GAME.turn+"] to assign their roles");
 					enablePlayerSelection(GAME.turn);
 				} else if (GAME.state == "target") {
 					var _ability = getRoleAbility(GAME.turn);
@@ -184,7 +179,7 @@ $(function() {
 				//SELECT TARGETS
 				$('.abstain').removeClass('js-active');
 				var _ability = getRoleAbility(GAME.turn);
-				showScript("<strong>READ:</strong> Would the "+GAME.turn+" please wake up, and select who they'd like to "+GAME.verbose[_ability]);
+				showScript("<strong>READ:</strong> Would the "+GAME.turn+" please select who they'd like to "+GAME.verbose[_ability]);
 				showInstruction("<strong>INSTRUCTION:</strong> Select the <strong>["+GAME.turn+"]</strong> target");
 				enablePlayerSelection("target");
 
@@ -205,6 +200,9 @@ $(function() {
 
 	$(document).on('click', '.next', function(event) {
 
+		console.log('=== NEXT CLICKED ===');
+
+
 		if (GAME.turn != "vote") {
 
 			if (GAME.state == "assign") {
@@ -212,7 +210,7 @@ $(function() {
 
 				//error state if they don't select the right amount
 				if ($('.js-selected').length < getSetupRolesCount(GAME.turn)) {
-					swal('Warning', 'Make the proper number of selections please', 'warning');
+					alert('Make proper number of selections please');
 					return;
 				}
 
@@ -256,52 +254,45 @@ $(function() {
 
 					if (inspected != undefined) {
 						if (sexed != undefined && sexed.role == "inspector") {
-							swal({
-								title: "Inspection:",
-								text: "* shrug *",
-								icon: "info",
-								button: "Continue",
-							}).then((value) => {
-  								evaluateStatuses();
-							});
+							alert('SHRUG');			
 						} else {
 							if (inspected.role == "red_killers" || inspected.role == "black_killers") {
-								swal({
-									title: "Inspection:",
-									text: "Thumbs UP - they are a KILLER.",
-									icon: "info",
-									button: "Continue",
-								}).then((value) => {
-	  								evaluateStatuses();
-								});
+								alert('THUMBS UP THEY A KILLER');
 							} else {
-								swal({
-									title: "Inspection:",
-									text: "Thumbs DOWN - they are NOT A KILLER.",
-									icon: "info",
-									button: "Continue",
-								}).then((value) => {
-	  								evaluateStatuses();
-								});
+								alert('THEY A CITIZEN');
 							}				
 						}
-					} else {
-
-						evaluateStatuses();
-						
 					}
 
+					evaluateStatuses();
 
 				}
+				
 
+				// if (getSetupRolesCount('inspector') > 0) {
+				
+				// 	inspectorFunction();
+				
+				// } else {
+
+				
+				// }
+
+				
+
+				
 			}
 
 		} else {
 
+			//WAKE UP HAPPENS HERE
+
+			evaluateGame();
+			console.log(evaluateGame());
+
 			//VOTING PROCESS
 			$('.board .players .player.js-selected').each(function(i,k) {
 				var _id = $(this).data('id');
-
 				updatePlayerAttribute(_id, "alive", false);
 				updatePlayerAttribute(_id, "status", "voted");
 			});
@@ -317,24 +308,14 @@ $(function() {
 			console.log(GAME.state);
 
 			//VOTING PROCESS COMPLETE;
-
-			swal("Vote submitted!", {
-				button: "Continue"
-			}).then((value) => {
-				swal("Night time!", "Tell the group to go to sleep.", {
-				 	button: "Continue"
-				});
-			});
-
+			evaluateGame();
+			console.log(evaluateGame());
 
 		}
 
 		$(document).off('click', '.board .players .player');
-		evaluateGame();
 		updateBoard();
-		// $('html, body').animate({
-		// 	scrollTop: 0
-		// }, 300);
+
 	});
 
 
@@ -379,11 +360,13 @@ $(function() {
 
 		$.each(affected, function(index, value) {
 
+
 			if (affected[index].status.indexOf('killed_by_red') >= 0 || affected[index].status.indexOf('killed_by_black') >= 0) {
 				updatePlayerAttribute(affected[index].id, "alive", false);
 			}
 			
 			if (affected[index].status.indexOf('healed') >= 0) {
+				// updatePlayerAttribute(affected[index].id, "status", "healed");
 				updatePlayerAttribute(affected[index].id, "alive", true);
 			}
 
@@ -428,17 +411,35 @@ $(function() {
 
 		}
 
-		swal({
-			title: "Wake up the group!",
-			text: "It's morning time.",
-			button: "Continue",
-		}).then((value) => {
-			updateGamelog();
-			updateBoard();
-		});
+		updateGamelog();
+		updateBoard();
 
-		
+	}
 
+	function evaluateGame() {
+		//determine who wins...
+		console.log("=== EVALUATE WIN ===");
+
+		var _citizens = getCitizenCount();
+		var _reds = getRolesCount('red_killers') || 0;
+		var _blacks = getRolesCount('black_killers') || 0;
+
+		console.log("CIV: "+_citizens);
+		console.log("RED: "+_reds);
+		console.log("BLK: "+_blacks);
+
+		if (_reds == 0 && _blacks == 0) {
+			alert("WINNER: CIVILIANS");
+			return true;
+		} else if (_reds >= _citizens && _blacks == 0) {
+			alert("WINNER: REDS");
+			return true;
+		} else if (_blacks >= _citizens && _reds == 0) {
+			alert("WINNER: BLACKS");
+			return true;
+		} else {
+			return false;
+		}
 	}
 
 	function updateGamelog() {
@@ -485,8 +486,6 @@ $(function() {
 
 		});
 
-
-
 		$('.gamelog').addClass('js-active');
 	
 	}
@@ -494,9 +493,6 @@ $(function() {
 	$(document).on('click', '.js-dismiss', function(event) {
 
 		$('.gamelog').removeClass('js-active');
-		swal('Voting Time!', 'Allow the group to decide who to vote out', {
-			button: "Continue"
-		});
 		// var affected = getPlayersWithStatus();
 
 	});
@@ -516,32 +512,6 @@ $(function() {
 });
 
 /* ==== HELPERS ==== */
-
-function evaluateGame() {
-	//determine who wins...
-	console.log("=== EVALUATE WIN ===");
-
-	var _citizens = getCitizenCount();
-	var _reds = getRolesCount('red_killers') || 0;
-	var _blacks = getRolesCount('black_killers') || 0;
-
-	console.log("CIV: "+_citizens);
-	console.log("RED: "+_reds);
-	console.log("BLK: "+_blacks);
-
-	if (_reds == 0 && _blacks == 0) {
-		swal("WINNER: CIVILIANS");
-		return true;
-	} else if (_reds >= _citizens && _blacks == 0) {
-		swal("WINNER: RED KILLERS");
-		return true;
-	} else if (_blacks >= _citizens && _reds == 0) {
-		swal("WINNER: BLACK KILLERS");
-		return true;
-	} else {
-		return false;
-	}
-}
 
 function updatePlayerAttribute(id, property, value) {
 

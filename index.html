@@ -6,64 +6,189 @@
         <title></title>
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link href="https://fonts.googleapis.com/css?family=Rubik:300,700|Ubuntu+Mono" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css?family=Crimson+Text:400,700|IM+Fell+DW+Pica:400i" rel="stylesheet">
 
         <link rel="stylesheet" href="css/normalize.min.css">
+        <link rel="stylesheet" href="css/checkbox.min.css">
         <link rel="stylesheet" href="css/styles.css">
 
         <script src="js/vendor/modernizr-2.8.3.min.js"></script>
     </head>
     <body>
 
-        <section class="draft">
-            <div class="peoples">
-                <h2>People</h2>
-                <div class="people">
-                    <div class="person">
-                        <input type="text" placeholder="Name" class="name"></input>
-                        <input type="text" placeholder="Probability" class="probability"></input>
+        <section class="setup">
+            <h1>Select Players</h1>
+            <section class="players">
+                <section class="list"></section>
+                <section class="total">
+                    Total Players: <span>0</span>
+                </section>
+                <section class="buttons">
+                    <button class="all">Select All</button>
+                    <button class="remove">Remove All</button>
+                </section>
+            </section>
+            <h1>Select Roles</h1>
+            <section class="roles">
+                <section class="list">
+                    <div class="role">
+                        <div class="pretty p-icon p-default p-pulse">
+                           <input type="checkbox" class="red_killers" value="red_killers" data-ability="killed_by_red" data-order="1" />
+                           <div class="state p-success">
+                               <i class="icon mdi mdi-check"></i>
+                               <label>Killers (Red)</label>
+                           </div>
+                        </div>
+                        <div class="properties">
+                            <label>Number of killers</label>
+                            <input type="number" name="number" value="1" max="4">
+                        </div>
                     </div>
-                </div>
-                <button class="add">Add Person</button>
-                <button class="lock">Lock it in!</button>
-            </div>
-            <div class="remaining">
-                <h2>Remaining Draftees</h2>
-                <table>
-
-                </table>
-            </div>
-            <div class="chosen">
-                <h2>Pick Order</h2>
-                <table>
-
-                </table>
-            </div>
-            <div class="buttons">
-                <button class="choose" disabled>
-                    Draft a name!
-                </button>
-                <button class="reset">
-                    Reset
-                </button>
-                <button class="example">
-                    Example
-                </button>
-            </div>
+                    <div class="role">
+                        <div class="pretty p-icon p-default p-pulse">
+                           <input type="checkbox" class="black_killers" value="black_killers" data-ability="killed_by_black" data-order="2" />
+                           <div class="state p-success">
+                               <i class="icon mdi mdi-check"></i>
+                               <label>Killers (Black)</label>
+                           </div>
+                        </div>
+                        <div class="properties">
+                            <label>Number of killers</label>
+                            <input type="number" name="number" value="1" max="4">
+                        </div>
+                    </div>
+                    <div class="role">
+                        <div class="pretty p-icon p-default p-pulse">
+                           <input type="checkbox" value="doctor" data-ability="healed" data-order="3" />
+                           <div class="state p-success">
+                               <i class="icon mdi mdi-check"></i>
+                               <label>Doctor</label>
+                           </div>
+                        </div>
+                    </div>
+                    <div class="role">
+                        <div class="pretty p-icon p-default p-pulse">
+                           <input type="checkbox" value="dentist" data-ability="silenced" data-order="4" />
+                           <div class="state p-success">
+                               <i class="icon mdi mdi-check"></i>
+                               <label>Dentist</label>
+                           </div>
+                        </div>
+                    </div>
+                    <div class="role">
+                        <div class="pretty p-icon p-default p-pulse">
+                           <input type="checkbox" value="prostitute" data-ability="sexed" data-order="69"/>
+                           <div class="state p-success">
+                               <i class="icon mdi mdi-check"></i>
+                               <label>Prostitute</label>
+                           </div>
+                        </div>
+                    </div>
+                    <div class="role">
+                        <div class="pretty p-icon p-default p-pulse">
+                           <input type="checkbox" value="inspector" data-ability="inspected" data-order="99"/>
+                           <div class="state p-success">
+                               <i class="icon mdi mdi-check"></i>
+                               <label>Inspector</label>
+                           </div>
+                        </div>
+                    </div>
+                </section>
+                <section class="buttons">
+                    <button class="all">Select All</button>
+                    <button class="remove">Remove All</button>
+                </section>
+            </section>
+            <section class="begin">
+                <button class="start">Begin!</button>
+            </section>
         </section>
 
-        <div class="template">
-            <div class="person">
-                <input type="text" placeholder="Name" class="name"></input>
-                <input type="text" placeholder="Probability" class="probability"></input>
+        <section class="board js-hide">
+            <div class="logo">
+              <img src="img/mafia-game-logo.svg" alt="">
             </div>
-        </div>
+            <section class="players">
+            </section>
+            <section class="buttons">
+                <button class="abstain js-abstain">Abstain</button>
+                <button class="next">Next</button>
+            </section>
+        </section>
+
+        <section class="gamelog">
+          <div class="half">
+            <h2>Roles</h2>
+            <table class="players">
+
+            </table>
+          </div>
+          <div class="half">
+            <h2>Turn by Turn</h2>
+            <table class="turns">
+            </table>
+          </div>
+          <div class="full">
+            <h2>Net Results (read aloud)</h2>
+            <ul class="results">
+            </ul>
+          </div>
+          <div class="full buttons">
+            <button class="dismiss js-dismiss">Proceed to Vote</button>
+          </div>
+        </section>
+
+        <section class="scripts">
+          <p class="script"></p>
+        </section>
+
+        <section class="instructions">
+          <p class="instruction"></p>
+        </section>
+
+        <section class="conclusion">
+          <div class="full">
+            <h2>Roles</h2>
+            <table class="players">
+
+            </table>
+          </div>
+          <div class="full">
+            <h2>Turn by Turn</h2>
+            <table class="turns">
+            </table>
+          </div>
+        </section>
+
+        <section class="template">
+            <div class="player-setup">
+                <div class="pretty p-icon p-default p-pulse">
+                   <input type="checkbox" class="name"/>
+                   <div class="state p-success">
+                       <i class="icon mdi mdi-check"></i>
+                       <label></label>
+                   </div>
+                </div>
+            </div>
+            <div class="player" data-id="">
+                <div class="avatar">
+                    <img src="img/citizen.svg" alt="">
+                </div>
+                <div class="details">
+                    <h3 class="name"></h3>
+                    <p class="role-container">Role: <span class="role"></span></p>
+                    <p class="alive-container">Alive: <span class="alive"></span></p>
+                    <p class="status-container">Status: <span class="status"></span></p>
+                    <p class="team-container">Team: <span class="team"></span></p>
+                </div>
+            </div>
+        </section>
 
         <script
           src="https://code.jquery.com/jquery-3.3.1.min.js"
           integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
           crossorigin="anonymous"></script>
-        <script src="js/weighted-list.js"></script>
+        <script src="js/swal.js"></script>
         <script src="js/main.js"></script>
     </body>
 </html>

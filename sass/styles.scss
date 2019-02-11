@@ -6,22 +6,40 @@
 
 // Updated Styles
 
-body {
+html,body {
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
-	font-family: $rubik;
-	font-weight: 300;
-	font-size: 16px;
+	font-family: $crimson;
+	background-color: $black;
+	color: $white;
+	font-weight: 400;
+	font-size: 24px;
 	// color: $navy;
 	line-height: 1.4;
 	* {
 		box-sizing: border-box;
 	}
 }
+body {
+	padding: 0.5rem;
+}
 
 h1,h2,h3,h4,h5,h6,b,strong {
-	font-weight: 700;
-
+	font-weight: normal;
+	font-family: $imfell;
+	margin: 0 auto;
+	padding: 0;
+	display: inline-block;
+	position: relative;
+	&:after {
+		content: '';
+		position: absolute;
+		bottom: 5px;
+		left: 0;
+		width: 100%;
+		height: 1px;
+		background-color: $white;
+	}
 }
 
 img {
@@ -39,8 +57,76 @@ a {
 	}
 }
 
-button {
+button, .swal-button {
 	transition: all 0.33s;
+	font-size: 1rem;
+	padding: 0.25rem 0.5rem;
+	background-color: $red;
+	border-top: 4px solid $light-grey;
+	border-right: 4px solid $dark-red;
+	border-bottom: 4px solid $dark-red;
+	border-left: 4px solid $light-grey;
+	color: $white;
+	&:active {
+		background-color: $white;
+		color: $red;
+		border-bottom: 4px solid $light-grey;
+		border-top: 4px solid $dark-red;
+		border-left: 4px solid $dark-red;
+		border-right: 4px solid $light-grey;
+	}
 }
 
-@import "partials/draft";
+.swal-button {
+	font-weight: inherit;
+	border-radius: 0;
+}
+
+.swal-button:not([disabled]):hover {
+	background-color: $red;
+	color: $white;
+}
+
+.swal-title:not(:last-child) {
+	margin-bottom: 0;
+}
+.swal-title:first-child {
+	margin-top: 12px;
+}
+.swal-title {
+	font-weight: 700;
+}
+.swal-text {
+	font-size: 18px;
+	text-align: center;
+	padding: 0 1rem;
+	color: $black;
+}
+
+.swal-modal {
+	border-radius: 0;
+	border: 4px solid $red;
+}
+
+.template {
+	display: none;
+}
+
+.pretty input:checked~.state.p-success label:after, .pretty.p-toggle .state.p-success label:after {
+	background-color: $red !important;
+}
+
+.pretty .state label:after, .pretty .state label:before {
+	border: 2px solid transparent;
+}
+
+.pretty .state label:before {
+	border-color: $white;
+}
+
+@import "partials/intro";
+@import "partials/setup";
+@import "partials/board";
+@import "partials/gamelog";
+@import "partials/instruction";
+@import "partials/conclusion";

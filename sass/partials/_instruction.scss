@@ -1,0 +1,40 @@
+section.instructions, section.scripts {
+	height: 60px;
+	width: 100%;
+	position: fixed;
+	left: 0;
+	bottom: 0;
+	top: auto;
+	background-color: rgba(255,255,255, 1);
+	color: $black;
+	z-index: 8000;
+	display: none;
+	font-family: monospace;
+	font-size: 0.6rem;
+	align-items: center;
+	flex-direction: column;
+	padding: 0.5rem;
+	justify-content: center;
+	&.js-active {
+		display: flex;
+	}
+	.instruction, .script {
+		margin: 0;
+		text-align: center;
+		strong {
+			font-family: monospace;
+			font-weight: 700;
+			&:after {
+				display: none;
+			}
+		}
+	}
+	.instruction {
+		color: $red;
+	}
+}
+
+section.scripts {
+	top: 0;
+	bottom: auto;
+}

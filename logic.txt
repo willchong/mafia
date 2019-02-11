@@ -1,0 +1,89 @@
+logic:
+
+set-up.
+
+players names are selected
+players object is created
+
+each player is an object with properties
+	- alive (true / false)
+	- status (silenced / slept / normal)
+	- role (citizen, killer_r, killer_b, etc.)
+	- team (citizens, killers_r, killers_b)
+	- selection (player they chose)
+
+every round involves 3 stages
+	- action
+	- result
+	- vote
+
+round 1 special things...
+	red_killers wake up (tap on killer tiles to assign)
+	red_killers choose target
+	red_killers sleep
+
+	black_killers wake up (tap on killer tiles to assign)
+	black_killers choose target
+	black_killers sleep
+
+	doctor wake up (assign doctor)
+	doctor choose target
+	doctor sleep
+
+	dentist wake up (assign dentist)
+	doctor choose target
+	doctor sleep
+
+	prostitute wake up (assign dentist)
+	prostitute choose target
+	prostitute sleep
+
+	inspector wake up (assign inspector)
+	inspector choose target
+	inspector sleep
+
+regular rounds
+
+
+win condition
+	- citizens
+		- if killer_r + killer_b are all dead
+	- killers_r
+		- if killer_r amount exceeds or equal citizens and killer_b are all dead
+	- killers_b
+		- if killer_b amount exceeds or equal citizens and killer_r are all dead
+
+draws...
+	- 1 prostitute or 1 doctor, 1 killer, 0 remaining other players
+	- 0 citizens, equal number of killers on both teams
+
+roles
+	- citizen
+	- killer
+		- selects someone to kill
+	- dentist - silences a person
+	- doctor - heals a person (prevents them from being killed)
+	- prostitute - disables an ability
+	- investigator
+		- investigates if someone is a killer or not
+
+
+
+TO DO -
+
+inspector exceptions when sexed + default functionality [v]
+write a disabled selection function [i think this is for... killers killing themselves, etc] or is this needed?
+write ABSTAIN function [v]
+find graphics and add them in upon assignments [v]
+need an alert POST vote (prior to the next round) [v]
+https://sweetalert.js.org/guides/ [v]
+
+instruct narrator to read aloud IF a ROLE HAS DIED (disable selection) [need to check if dead, then special instruction + disabled buttons]
+win condition screens!
+--> full log?
+make DEAD / SILENCED stampy things / selector icons
+default recommendations for killer numbers
+add "nothing happened"
+fixed "NEXT" button? maybe more context...
+Add "go back to sleep" alerts / helper text
+Remove selection

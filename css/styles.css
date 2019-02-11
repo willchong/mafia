@@ -413,18 +413,36 @@ button,
 [type="submit"] {
   -webkit-appearance: button; }
 
-body {
+html, body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  font-family: "Rubik", sans-serif;
-  font-weight: 300;
-  font-size: 16px;
+  font-family: "Crimson Text", serif;
+  background-color: #090000;
+  color: #fff;
+  font-weight: 400;
+  font-size: 24px;
   line-height: 1.4; }
-  body * {
+  html *, body * {
     box-sizing: border-box; }
 
+body {
+  padding: 0.5rem; }
+
 h1, h2, h3, h4, h5, h6, b, strong {
-  font-weight: 700; }
+  font-weight: normal;
+  font-family: "IM Fell DW Pica", serif;
+  margin: 0 auto;
+  padding: 0;
+  display: inline-block;
+  position: relative; }
+  h1:after, h2:after, h3:after, h4:after, h5:after, h6:after, b:after, strong:after {
+    content: '';
+    position: absolute;
+    bottom: 5px;
+    left: 0;
+    width: 100%;
+    height: 1px;
+    background-color: #fff; }
 
 img {
   width: auto;
@@ -438,111 +456,416 @@ a {
   a:hover {
     text-decoration: none; }
 
-button {
-  transition: all 0.33s; }
+button, .swal-button {
+  transition: all 0.33s;
+  font-size: 1rem;
+  padding: 0.25rem 0.5rem;
+  background-color: #BD1A31;
+  border-top: 4px solid #E2E3E5;
+  border-right: 4px solid #40000E;
+  border-bottom: 4px solid #40000E;
+  border-left: 4px solid #E2E3E5;
+  color: #fff; }
+  button:active, .swal-button:active {
+    background-color: #fff;
+    color: #BD1A31;
+    border-bottom: 4px solid #E2E3E5;
+    border-top: 4px solid #40000E;
+    border-left: 4px solid #40000E;
+    border-right: 4px solid #E2E3E5; }
 
-section.draft {
-  display: flex;
-  flex-wrap: wrap;
-  flex-direction: row;
-  justify-content: center; }
-  section.draft .peoples, section.draft .remaining, section.draft .chosen {
-    width: 33.333%;
-    padding: 0.5rem; }
-    section.draft .peoples h2, section.draft .remaining h2, section.draft .chosen h2 {
-      width: 100%;
-      text-align: center; }
-    @media (max-width: 640px) {
-      section.draft .peoples, section.draft .remaining, section.draft .chosen {
-        width: 100%; } }
-  section.draft .peoples {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: space-between; }
-    section.draft .peoples .people {
-      width: 100%; }
-      section.draft .peoples .people .person {
-        display: flex;
-        flex-direction: row;
-        flex-wrap: wrap;
-        justify-content: space-between;
-        margin-bottom: 0.5rem; }
-        section.draft .peoples .people .person .name {
-          width: calc(65% - 0.25rem); }
-        section.draft .peoples .people .person .probability {
-          width: calc(35% - 0.25rem); }
-    section.draft .peoples button {
-      margin-top: 4rem;
-      width: calc(50% - 0.5rem); }
-  section.draft .buttons {
-    margin-top: 2rem;
-    width: 42%;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between; }
-    section.draft .buttons .choose {
-      width: 100%;
-      margin-bottom: 0.5rem; }
-    section.draft .buttons .reset {
-      width: calc(35% - 0.25rem); }
-    section.draft .buttons .example {
-      width: calc(65% - 0.25rem); }
-    @media (max-width: 640px) {
-      section.draft .buttons {
-        padding: 1rem;
-        width: 100%; } }
-  section.draft .chosen table, section.draft .remaining table {
-    width: 90%;
-    margin: 0 auto; }
-    section.draft .chosen table tr, section.draft .remaining table tr {
-      width: 100%;
-      border-top: 1px solid #eee;
-      border-left: 1px solid #eee;
-      border-right: 1px solid #eee; }
-      section.draft .chosen table tr td, section.draft .remaining table tr td {
-        width: 65%;
-        padding: 0.25rem;
-        border-right: 1px solid #eee; }
-        section.draft .chosen table tr td:last-child, section.draft .remaining table tr td:last-child {
-          width: 35%; }
-      section.draft .chosen table tr:last-child, section.draft .remaining table tr:last-child {
-        border-bottom: 1px solid #eee; }
-  section.draft .remaining {
-    background-color: #eee; }
-    section.draft .remaining table tr {
-      border-top: 1px solid #282828;
-      border-left: 1px solid #282828;
-      border-right: 1px solid #282828; }
-      section.draft .remaining table tr td {
-        border-right: 1px solid #282828; }
-        section.draft .remaining table tr td:last-child {
-          font-family: "Ubuntu Mono", monospace;
-          text-align: right; }
-          section.draft .remaining table tr td:last-child strong {
-            font-family: "Rubik", sans-serif; }
-      section.draft .remaining table tr:last-child {
-        border-bottom: 1px solid #282828; }
+.swal-button {
+  font-weight: inherit;
+  border-radius: 0; }
 
-div.template {
+.swal-button:not([disabled]):hover {
+  background-color: #BD1A31;
+  color: #fff; }
+
+.swal-title:not(:last-child) {
+  margin-bottom: 0; }
+
+.swal-title:first-child {
+  margin-top: 12px; }
+
+.swal-title {
+  font-weight: 700; }
+
+.swal-text {
+  font-size: 18px;
+  text-align: center;
+  padding: 0 1rem;
+  color: #090000; }
+
+.swal-modal {
+  border-radius: 0;
+  border: 4px solid #BD1A31; }
+
+.template {
   display: none; }
 
-button {
-  background-color: #6F5EAC;
-  color: #282828;
-  font-weight: 700;
-  text-transform: uppercase;
-  border: 3px solid #282828;
+.pretty input:checked ~ .state.p-success label:after, .pretty.p-toggle .state.p-success label:after {
+  background-color: #BD1A31 !important; }
+
+.pretty .state label:after, .pretty .state label:before {
+  border: 2px solid transparent; }
+
+.pretty .state label:before {
+  border-color: #fff; }
+
+section.setup {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  justify-content: center;
+  margin: 0 auto;
+  padding: 0.5rem;
+  border: 1px solid #fff; }
+  section.setup h1 {
+    width: auto;
+    text-align: center;
+    margin-bottom: 0.75rem; }
+  section.setup .players, section.setup .roles {
+    width: 100%;
+    max-width: 320px;
+    margin: 0 auto;
+    text-align: center; }
+    section.setup .players .list, section.setup .roles .list {
+      width: auto;
+      margin: 0 auto;
+      display: inline-block; }
+      section.setup .players .list .player-setup, section.setup .players .list .role, section.setup .roles .list .player-setup, section.setup .roles .list .role {
+        margin-bottom: 0.5rem; }
+        section.setup .players .list .player-setup .pretty, section.setup .players .list .role .pretty, section.setup .roles .list .player-setup .pretty, section.setup .roles .list .role .pretty {
+          width: 100%;
+          display: flex;
+          flex-direction: row;
+          align-items: center;
+          justify-content: flex-start; }
+          section.setup .players .list .player-setup .pretty input[type="checkbox"], section.setup .players .list .role .pretty input[type="checkbox"], section.setup .roles .list .player-setup .pretty input[type="checkbox"], section.setup .roles .list .role .pretty input[type="checkbox"] {
+            width: 1rem;
+            height: 1rem;
+            margin-right: 0.25rem; }
+          section.setup .players .list .player-setup .pretty label, section.setup .players .list .role .pretty label, section.setup .roles .list .player-setup .pretty label, section.setup .roles .list .role .pretty label {
+            font-size: 1rem; }
+        section.setup .players .list .player-setup .properties, section.setup .players .list .role .properties, section.setup .roles .list .player-setup .properties, section.setup .roles .list .role .properties {
+          margin-top: 0.25rem;
+          font-size: 0.8rem;
+          display: flex; }
+          section.setup .players .list .player-setup .properties input, section.setup .players .list .role .properties input, section.setup .roles .list .player-setup .properties input, section.setup .roles .list .role .properties input {
+            margin-left: 0.25rem;
+            background-color: #090000;
+            border: 1px solid #fff;
+            width: 1.5rem;
+            text-align: center; }
+    section.setup .players .total, section.setup .roles .total {
+      text-align: center;
+      margin: 0.75rem auto 0;
+      font-weight: 700;
+      width: 80%;
+      min-width: 200px;
+      padding: 0.25rem 0 0;
+      border: 1px solid #fff; }
+    section.setup .players .buttons, section.setup .roles .buttons {
+      width: 100%;
+      max-width: 320px;
+      margin: 1rem auto;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between; }
+      section.setup .players .buttons .start, section.setup .roles .buttons .start {
+        width: 100%;
+        margin-bottom: 0.75rem; }
+      section.setup .players .buttons .all, section.setup .players .buttons .remove, section.setup .roles .buttons .all, section.setup .roles .buttons .remove {
+        width: calc(50% - 0.375rem); }
+  section.setup .begin {
+    padding: 2rem 0;
+    width: 100%;
+    max-width: 320px;
+    margin: 0 auto;
+    text-align: center; }
+    section.setup .begin .start {
+      width: 100%; }
+
+section.board {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  justify-content: center;
+  max-width: 768px;
+  margin: 0 auto;
+  margin-top: 60px;
+  margin-bottom: 60px;
+  padding: 0.25rem;
+  border: 1px solid #fff; }
+  section.board.js-hide {
+    display: none; }
+  section.board h1 {
+    width: auto;
+    text-align: center;
+    margin-bottom: 0.75rem; }
+  section.board .logo {
+    text-align: center;
+    padding: 0.5rem 0 0.25rem 0; }
+    section.board .logo img {
+      width: 240px; }
+  section.board .players {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start; }
+    section.board .players .player {
+      width: calc(50% - 0.5rem);
+      margin: 0.25rem;
+      padding: 0;
+      display: flex;
+      flex-direction: row;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      cursor: pointer;
+      transition: all 0.33s;
+      position: relative; }
+      @media (max-width: 480px) {
+        section.board .players .player {
+          width: 100%; } }
+      section.board .players .player:after {
+        content: '';
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        top: 0;
+        left: 0;
+        z-index: 100;
+        transition: all 0.33s;
+        -webkit-box-shadow: inset 0px 0px 0px 2px #fff;
+        -moz-box-shadow: inset 0px 0px 0px 2px #fff;
+        box-shadow: inset 0px 0px 0px 2px #fff; }
+      section.board .players .player.js-selected:after {
+        -webkit-box-shadow: inset 0px 0px 0px 6px #BD1A31;
+        -moz-box-shadow: inset 0px 0px 0px 6px #BD1A31;
+        box-shadow: inset 0px 0px 0px 6px #BD1A31; }
+      section.board .players .player .avatar {
+        background-color: #fff;
+        width: 25%;
+        display: flex;
+        align-items: center;
+        justify-content: center; }
+      section.board .players .player .details {
+        width: 75%;
+        display: flex;
+        flex-wrap: wrap;
+        flex-direction: row;
+        padding: 0.5rem; }
+        section.board .players .player .details h3 {
+          font-family: "Crimson Text", serif;
+          font-size: 1rem;
+          width: 100%;
+          text-align: left;
+          margin-bottom: 0.25rem; }
+          section.board .players .player .details h3:after {
+            display: none; }
+        section.board .players .player .details p {
+          width: 100%;
+          font-size: 0.75rem;
+          font-weight: 700;
+          margin: 0;
+          margin-right: 0.25rem;
+          padding: 0; }
+          section.board .players .player .details p span {
+            font-weight: 400;
+            text-transform: capitalize; }
+        section.board .players .player .details .alive-container, section.board .players .player .details .team-container {
+          display: none; }
+      section.board .players .player.js-dead {
+        opacity: 0.15;
+        pointer-events: none; }
+      section.board .players .player.js-noselect {
+        pointer-events: none; }
+        section.board .players .player.js-noselect:after {
+          background-image: linear-gradient(45deg, rgba(160, 160, 160, 0.5) 25%, rgba(80, 80, 80, 0.5) 25%, rgba(80, 80, 80, 0.5) 50%, rgba(160, 160, 160, 0.5) 50%, rgba(160, 160, 160, 0.5) 75%, rgba(80, 80, 80, 0.5) 75%, rgba(80, 80, 80, 0.5) 100%);
+          background-size: 56.57px 56.57px; }
+      section.board .players .player.js-silenced:after {
+        background-image: linear-gradient(45deg, rgba(189, 26, 49, 0.5) 25%, rgba(64, 0, 14, 0.5) 25%, rgba(64, 0, 14, 0.5) 50%, rgba(189, 26, 49, 0.5) 50%, rgba(189, 26, 49, 0.5) 75%, rgba(64, 0, 14, 0.5) 75%, rgba(64, 0, 14, 0.5) 100%);
+        background-size: 56.57px 56.57px; }
+  section.board .buttons {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    padding: 2rem 0 0 0; }
+    section.board .buttons .abstain {
+      width: calc(25% - 0.5rem);
+      margin-right: 0.5rem;
+      display: none; }
+      section.board .buttons .abstain.js-active {
+        display: inline-block; }
+      section.board .buttons .abstain.js-selected {
+        background-color: #fff;
+        color: #BD1A31;
+        border-bottom: 4px solid #E2E3E5;
+        border-top: 4px solid #40000E;
+        border-left: 4px solid #40000E;
+        border-right: 4px solid #E2E3E5; }
+    section.board .buttons .next {
+      width: calc(50% - 0.25rem); }
+
+section.gamelog {
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  top: 100%;
+  left: 0;
+  background-color: white;
+  opacity: 0;
+  color: #090000;
+  z-index: -9999;
   padding: 1rem;
-  transition: all 0.33s; }
-  button[disabled] {
-    font-weight: 300;
-    color: #282828;
-    background-color: #969696;
-    border: 3px solid #282828; }
-    button[disabled]:hover {
-      background-color: #969696; }
-  button:hover {
-    background-color: #0178E0; }
+  display: flex;
+  flex-wrap: wrap;
+  overflow: auto; }
+  section.gamelog.js-active {
+    top: 0;
+    opacity: 1;
+    z-index: 9999; }
+  section.gamelog .players, section.gamelog .turns {
+    font-family: monospace;
+    font-size: 0.6rem;
+    width: 100%;
+    border: 1px solid #090000; }
+    section.gamelog .players tr, section.gamelog .turns tr {
+      border: 1px solid #090000; }
+      section.gamelog .players tr td, section.gamelog .turns tr td {
+        padding: 0.125rem; }
+        section.gamelog .players tr td:first-child, section.gamelog .turns tr td:first-child {
+          text-transform: uppercase;
+          font-weight: 700;
+          border-right: 1px solid #090000; }
+  section.gamelog .turns tr td {
+    padding: 0.25rem; }
+    section.gamelog .turns tr td:first-child {
+      font-weight: 400;
+      border-right: 0; }
+  section.gamelog h2 {
+    width: 100%;
+    text-align: center; }
+  section.gamelog .half {
+    width: 50%;
+    padding: 0.5rem; }
+    @media (max-width: 640px) {
+      section.gamelog .half {
+        width: 100%; } }
+  section.gamelog .full {
+    width: 100%;
+    padding: 0.5rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center; }
+    section.gamelog .full .results {
+      width: auto; }
+      section.gamelog .full .results li {
+        width: auto; }
+  section.gamelog .buttons {
+    display: flex;
+    align-items: center;
+    justify-content: center; }
+    section.gamelog .buttons .dismiss {
+      width: 50%;
+      margin: 0 auto; }
+
+section.instructions, section.scripts {
+  height: 60px;
+  width: 100%;
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  top: auto;
+  background-color: white;
+  color: #090000;
+  z-index: 8000;
+  display: none;
+  font-family: monospace;
+  font-size: 0.6rem;
+  align-items: center;
+  flex-direction: column;
+  padding: 0.5rem;
+  justify-content: center; }
+  section.instructions.js-active, section.scripts.js-active {
+    display: flex; }
+  section.instructions .instruction, section.instructions .script, section.scripts .instruction, section.scripts .script {
+    margin: 0;
+    text-align: center; }
+    section.instructions .instruction strong, section.instructions .script strong, section.scripts .instruction strong, section.scripts .script strong {
+      font-family: monospace;
+      font-weight: 700; }
+      section.instructions .instruction strong:after, section.instructions .script strong:after, section.scripts .instruction strong:after, section.scripts .script strong:after {
+        display: none; }
+  section.instructions .instruction, section.scripts .instruction {
+    color: #BD1A31; }
+
+section.scripts {
+  top: 0;
+  bottom: auto; }
+
+section.conclusion {
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  top: 100%;
+  left: 0;
+  background-color: white;
+  opacity: 0;
+  color: #090000;
+  z-index: -9999;
+  padding: 1rem;
+  display: flex;
+  flex-wrap: wrap;
+  overflow: auto; }
+  section.conclusion.js-active {
+    top: 0;
+    opacity: 1;
+    z-index: 9999; }
+  section.conclusion .players, section.conclusion .turns {
+    font-family: monospace;
+    font-size: 0.6rem;
+    width: 100%;
+    border: 1px solid #090000; }
+    section.conclusion .players tr, section.conclusion .turns tr {
+      border: 1px solid #090000; }
+      section.conclusion .players tr td, section.conclusion .turns tr td {
+        padding: 0.125rem; }
+        section.conclusion .players tr td:first-child, section.conclusion .turns tr td:first-child {
+          text-transform: uppercase;
+          font-weight: 700;
+          border-right: 1px solid #090000; }
+  section.conclusion .turns tr td {
+    padding: 0.125rem; }
+    section.conclusion .turns tr td:first-child {
+      font-weight: 400;
+      border-right: 0; }
+  section.conclusion h2 {
+    width: 100%;
+    text-align: center; }
+  section.conclusion .half {
+    width: 50%;
+    padding: 0.5rem; }
+    @media (max-width: 640px) {
+      section.conclusion .half {
+        width: 100%; } }
+  section.conclusion .full {
+    width: 100%;
+    padding: 0.5rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center; }
+    section.conclusion .full .results {
+      width: auto; }
+      section.conclusion .full .results li {
+        width: auto; }
+  section.conclusion .buttons {
+    display: flex;
+    align-items: center;
+    justify-content: center; }
+    section.conclusion .buttons .dismiss {
+      width: 50%;
+      margin: 0 auto; }
 
 /*# sourceMappingURL=styles.css.map */
